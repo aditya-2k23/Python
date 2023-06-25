@@ -171,11 +171,29 @@
 # average = round((num1 + num2 + num3) / 3, 2)
 # print(average)
 
-r = int(input("radius: "))
-units = input("select units: ").lower()
 
-pi = 3.1415926535 or 22 / 7
+# VOLUME OF SPHERE CALCULATOR
 
-volume = (4 / 3) * pi * (r**3)
 
-print("The volume of sphere with the radius", r, units, "is=", volume, "cubic", units)
+# r = int(input("radius: "))
+# units = input("select units: ").lower()
+
+# pi = 3.1415926535 or 22 / 7
+
+# volume = (4 / 3) * pi * (r**3)
+
+# print("The volume of sphere with the radius", r, units, "is=", volume, "cubic", units)
+
+
+# AGE CALCULATOR FROM NOW
+
+
+# name = input("What is your name: ")
+# age = int(input("Enter your age: "))
+
+# number_of_years = 100 - age
+# years_from_now = 2023 + number_of_years
+
+# print(
+#     "Your name is", name, "& your age is", age, "& you will turn 100 in", years_from_now
+# )
