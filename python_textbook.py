@@ -159,7 +159,14 @@
 
 # Repeat messages
 
-n = int(input("Enter how many times you want me say GOOD MORNING to you: "))
+# n = int(input("Enter how many times you want me say GOOD MORNING to you: "))
 
-for i in range(n):
-    print("GOOD MORNING!")
+# for i in range(n):
+#     print("GOOD MORNING!")
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+num3 = float(input("Enter third number: "))
+
+average = round((num1 + num2 + num3) / 3, 2)
+print(average)
