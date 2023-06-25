@@ -155,3 +155,11 @@
 
 #   if num1 / num2 < 1:
 #     print(Fraction(round((num1 / num2), 2)))
+
+
+# Repeat messages
+
+n = int(input("Enter how many times you want me say GOOD MORNING to you: "))
+
+for i in range(n):
+    print("GOOD MORNING!")
