@@ -201,9 +201,25 @@
 
 # DETERMINE THE ENERGY
 
-m = int(input("Enter your mass: "))
-c = 3 * (10**8)
+# m = int(input("Enter your mass: "))
+# c = 3 * (10**8)
 
-e = m / 1000 * c
+# e = m / 1000 * c
 
-print("You have capable energy of:", e, "Joules.")
+# print("You have capable energy of:", e, "Joules.")
+
+
+# HEIGHT OF WINDOW
+
+
+import math
+
+length = int(input("Length of Ladder: "))
+angle = int(input("Angle formed by the ladder and the wall: "))
+radian = math.radians(angle)
+sin = math.sin(radian)
+
+height = round(length * sin, 2)
+print(
+    f"The height reached by the ladder having length {length} and angle {angle} is: {height}"
+)
