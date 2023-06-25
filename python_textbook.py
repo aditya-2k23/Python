@@ -95,24 +95,63 @@
 
 # Degree Celsius to Degree Fahrenheit
 
-C = float(input("What is the temperature in degree Celcius? "))
-F = float(0)
+# C = float(input("What is the temperature in degree Celcius? "))
+# F = float(0)
 
 
-def change():
-    F = (C * (9 / 5)) + 32
+# def change():
+#     F = (C * (9 / 5)) + 32
 
-    if F >= 100:
-        print("It is too hot! 🔥")
-    elif F <= 99 and F >= 90:
-        print("It is warm weather! 🌵")
-    elif F < 90 and F > 68:
-        print("It is good weather! 😎")
-    elif F <= 68 and F >= 66:
-        print("It is cold weather! 🌨")
-    elif F <= 65:
-        print("It is too cold! ⛄")
-    print("The temperature in Fahrenheit is:", F, "°F")
+#     if F >= 100:
+#         print("It is too hot! 🔥")
+#     elif F <= 99 and F >= 90:
+#         print("It is warm weather! 🌵")
+#     elif F < 90 and F > 68:
+#         print("It is good weather! 😎")
+#     elif F <= 68 and F >= 66:
+#         print("It is cold weather! 🌨")
+#     elif F <= 65:
+#         print("It is too cold! ⛄")
+#     print("The temperature in Fahrenheit is:", F, "°F")
 
 
-change()
+# change()
+
+
+# To calculate the number of days to complete a job by three persons: A, B, C together
+
+# from fraction import Fraction
+
+# A = int(input("The number of days required to done the job by A: "))
+# B = int(input("The number of days required to done the job by B: "))
+# C = int(input("The number of days required to done the job by C: "))
+
+# total_days = (A * B * C) / ((A*B) + (B*C) + (C*A))
+# rounded_total_days = round(total_days, 2)
+
+# print("The total number of days required to done the job by all three persons =", Fraction(rounded_total_days))
+
+
+# Calculator
+
+# from fraction import Fraction
+
+# num1 = float(input("Enter number 1: "))
+# num2 = float(input("Enter number 2: "))
+
+# operator = input("Choose operator [+, -, *, /]: ")
+
+# if operator == "+":
+#   print(num1 + num2)
+
+# elif operator == "-":
+#   print(num1 - num2)
+
+# elif operator == "*":
+#   print(num1 * num2)
+
+# elif operator == "/":
+#   print(round((num1 / num2), 2))
+
+#   if num1 / num2 < 1:
+#     print(Fraction(round((num1 / num2), 2)))
