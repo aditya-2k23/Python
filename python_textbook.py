@@ -164,9 +164,18 @@
 # for i in range(n):
 #     print("GOOD MORNING!")
 
-num1 = float(input("Enter first number: "))
-num2 = float(input("Enter second number: "))
-num3 = float(input("Enter third number: "))
+# num1 = float(input("Enter first number: "))
+# num2 = float(input("Enter second number: "))
+# num3 = float(input("Enter third number: "))
 
-average = round((num1 + num2 + num3) / 3, 2)
-print(average)
+# average = round((num1 + num2 + num3) / 3, 2)
+# print(average)
+
+r = int(input("radius: "))
+units = input("select units: ").lower()
+
+pi = 3.1415926535 or 22 / 7
+
+volume = (4 / 3) * pi * (r**3)
+
+print("The volume of sphere with the radius", r, units, "is=", volume, "cubic", units)
