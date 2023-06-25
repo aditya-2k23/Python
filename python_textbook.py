@@ -197,3 +197,13 @@
 # print(
 #     "Your name is", name, "& your age is", age, "& you will turn 100 in", years_from_now
 # )
+
+
+# DETERMINE THE ENERGY
+
+m = int(input("Enter your mass: "))
+c = 3 * (10**8)
+
+e = m / 1000 * c
+
+print("You have capable energy of:", e, "Joules.")
