@@ -188,7 +188,7 @@
 # AGE CALCULATOR FROM NOW
 
 
-# name = input("What is your name: ")
+# name = input("What is your name: ").title()
 # age = int(input("Enter your age: "))
 
 # number_of_years = 100 - age
