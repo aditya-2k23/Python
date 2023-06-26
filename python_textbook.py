@@ -212,14 +212,63 @@
 # HEIGHT OF WINDOW
 
 
-import math
+# import math
 
-length = int(input("Length of Ladder: "))
-angle = int(input("Angle formed by the ladder and the wall: "))
-radian = math.radians(angle)
-sin = math.sin(radian)
+# length = int(input("Length of Ladder: "))
+# angle = int(input("Angle formed by the ladder and the wall: "))
+# radian = math.radians(angle)
+# sin = math.sin(radian)
 
-height = round(length * sin, 2)
-print(
-    f"The height reached by the ladder having length {length} and angle {angle} is: {height}"
-)
+# height = round(length * sin, 2)
+# print(
+#     f"The height reached by the ladder having length {length} and angle {angle} is: {height}"
+# )
+
+
+# a = 110
+# while a > 100:
+#     print(a)
+#     a -= 2
+
+# for i in range(20, 30, 2):
+#     print(i)
+
+# country = "INDIA"
+# for i in country:
+#     print(i)
+
+# i = 0; sum = 0
+# while i < 9:
+#     if i % 4 == 0:
+#         sum = sum + i
+#     i = i + 2
+# print(sum)
+
+# for x in range(1, 4):
+#     for y in range(2, 5):
+#         if x * y > 10:
+#             break
+#         print(x * y)
+
+# var = 7
+# while var > 0:
+#     print ('Current variable value:', var)
+#     var = var - 1
+#     if var == 3:
+#         break
+#     else:
+#         if var == 6:
+#             var = var - 1
+#             continue
+#     print ("Good bye!")
+
+
+# DRIVING LICENSE
+
+# name = input("Enter your name: ").title()
+# age = int(input("Enter your age: "))
+
+# if age >= 18:
+#     print(name, "you are eligible for driving license!, as your age", age, "is above the minimum age requirement.")
+# else:
+#     print(name, "you are not eligible for driving license!, as your age", age, "is below the minimum age requirement.")
