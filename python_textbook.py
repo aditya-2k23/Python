@@ -272,3 +272,12 @@
 #     print(name, "you are eligible for driving license!, as your age", age, "is above the minimum age requirement.")
 # else:
 #     print(name, "you are not eligible for driving license!, as your age", age, "is below the minimum age requirement.")
+
+
+# PRINT THE TABLE 
+
+# num = int(input("Enter the number to display its table: "))
+
+# for a in range(1,11):
+#     print(num," × ",a," = ",(num*a))
+
