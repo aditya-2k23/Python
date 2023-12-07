@@ -1,6 +1,7 @@
 import time
 from player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
 
+
 class TicTacToe:
     def __init__(self):
         self.board = [" " for _ in range(9)]
@@ -79,14 +80,31 @@ def play(game, x_player, o_player, print_game=True):
 
             letter = "O" if letter == "X" else "X"
 
-        time.sleep(1)
+        # time.sleep(1)
 
     if print_game:
         print("It's a tie!")
 
 
 if __name__ == "__main__":
-    x_player = HumanPlayer("X")
-    o_player = GeniusComputerPlayer("O")
-    t = TicTacToe()
+    x_wins = 0
+    o_wins = 0
+    ties = 0
+    rounds = int(input("Enter number of rounds: "))
+    for _ in range(rounds):
+        x_player = RandomComputerPlayer("X")
+        o_player = GeniusComputerPlayer("O")
+        t = TicTacToe()
+        result = play(t, x_player, o_player, print_game=False)
+        if result == "X":
+            x_wins += 1
+        elif result == "O":
+            o_wins += 1
+        else:
+            ties += 1
+
+    print(
+        f"After {rounds} rounds, we see {x_wins} X wins, {o_wins} O wins, and {ties} ties"
+    )
+
     play(t, x_player, o_player, print_game=True)
