@@ -28,7 +28,7 @@ class HumanPlayer(Player):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + "'s turn. Input move (0-8):")
+            square = input(self.letter + "'s turn. Input move (0-8): ")
 
             try:
                 val = int(square)
@@ -36,7 +36,7 @@ class HumanPlayer(Player):
                     raise ValueError
                 valid_square = True
             except ValueError:
-                print("Invalid square. Try again.")
+                print("Invalid square. Try again!")
 
         return val
 

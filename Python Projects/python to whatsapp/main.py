@@ -4,4 +4,4 @@ sys.path.append("C:/Users/Aditya/AppData/Local/Programs/Python/Python311/python.
 
 import pywhatkit as pyw
 
-pyw.sendwhatmsg("+916284219106", "Welcome to Python", 22, 7)
+pyw.sendwhatmsg("+918002599534", "Hellllllllllllllllllllllo", 10, 55)

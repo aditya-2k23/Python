@@ -75,36 +75,40 @@ def play(game, x_player, o_player, print_game=True):
 
             if game.current_winner:
                 if print_game:
-                    print(letter + " wins!")
+                    print(letter + " Wins!")
                 return letter
 
             letter = "O" if letter == "X" else "X"
 
-        # time.sleep(1)
+        time.sleep(1)
 
     if print_game:
-        print("It's a tie!")
+        print("It's a Tie!")
 
 
 if __name__ == "__main__":
     x_wins = 0
     o_wins = 0
     ties = 0
-    rounds = int(input("Enter number of rounds: "))
-    for _ in range(rounds):
-        x_player = RandomComputerPlayer("X")
-        o_player = GeniusComputerPlayer("O")
-        t = TicTacToe()
-        result = play(t, x_player, o_player, print_game=False)
-        if result == "X":
-            x_wins += 1
-        elif result == "O":
-            o_wins += 1
-        else:
-            ties += 1
+    x_player = GeniusComputerPlayer("X")
+    o_player = HumanPlayer("O")
+    t = TicTacToe()
 
-    print(
-        f"After {rounds} rounds, we see {x_wins} X wins, {o_wins} O wins, and {ties} ties"
-    )
+    # rounds = int(input("Enter number of rounds: "))
+    # for _ in range(rounds):
+    #     x_player = RandomComputerPlayer("X")
+    #     o_player = GeniusComputerPlayer("O")
+    #     t = TicTacToe()
+    #     result = play(t, x_player, o_player, print_game=False)
+    #     if result == "X":
+    #         x_wins += 1
+    #     elif result == "O":
+    #         o_wins += 1
+    #     else:
+    #         ties += 1
+
+    # print(
+    #     f"After {rounds} rounds, we see {x_wins} X wins, {o_wins} O wins, and {ties} ties"
+    # )
 
     play(t, x_player, o_player, print_game=True)
