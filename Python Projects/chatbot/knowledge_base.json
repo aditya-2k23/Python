@@ -1,0 +1,32 @@
+{
+  "questions": [
+    {
+      "question": "Hello",
+      "answer": "Hello there!"
+    },
+    {
+      "question": "Hello there!",
+      "answer": "Hello there!"
+    },
+    {
+      "question": "Hi",
+      "answer": "Hello there!"
+    },
+    {
+      "question": "Bye",
+      "answer": "GoodBye! Have a nice one."
+    },
+    {
+      "question": "Who are you?",
+      "answer": "I'm a chatbot"
+    },
+    {
+      "question": "Why are you here",
+      "answer": "I'm here to assist you!"
+    },
+    {
+      "question": "Feedback?",
+      "answer": "You can give feedback from Feedback portal"
+    }
+  ]
+}
