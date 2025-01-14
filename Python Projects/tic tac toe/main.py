@@ -59,10 +59,10 @@ def play(game, x_player, o_player, print_game=True):
     if print_game:
         game.print_board_nums()
 
-    letter = "X"  # starting letter
+    letter = "❌"  # starting letter
 
     while game.empty_squares():
-        if letter == "O":
+        if letter == "⭕":
             square = o_player.get_move(game)
         else:
             square = x_player.get_move(game)
@@ -78,7 +78,7 @@ def play(game, x_player, o_player, print_game=True):
                     print(letter + " wins!")
                 return letter
 
-            letter = "O" if letter == "X" else "X"
+            letter = "⭕" if letter == "❌" else "❌"
 
         time.sleep(1)
 
@@ -87,7 +87,7 @@ def play(game, x_player, o_player, print_game=True):
 
 
 if __name__ == "__main__":
-    x_player = HumanPlayer("X")
-    o_player = RandomComputerPlayer("O")
+    x_player = HumanPlayer("❌")
+    o_player = RandomComputerPlayer("⭕")
     t = TicTacToe()
     play(t, x_player, o_player, print_game=True)
