@@ -20,7 +20,7 @@ def factorial(n):
 def evenNumbers(limit):
     for i in range(limit):
         if i % 2 == 0:
-            yield i
+            yield i # ? yield is user for: It is used to return a list of values, one at a time
 
 def outerFunctions(message):
     def innerFunction():
@@ -38,8 +38,6 @@ def outerFunctions(message):
     print(f"Factorial of 5: {factorial(5)}")
 
     print("Even numbers from 0 to 10:")
-
-    for num in evenNumbers(10):
-        print(num)
+    print(list(evenNumbers(10)))
 
 outerFunctions("Hello from outer function!")
