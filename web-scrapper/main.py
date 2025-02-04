@@ -1,66 +1,40 @@
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
+from crawlbase import CrawlingAPI
+import json
 
-def search_google_patents(query, max_results=10):
-    """
-    Searches Google Patents for a given query and returns the titles and links of the results.
+crawling_api = CrawlingAPI({'token': '69Th5CldxjXoJUpS0Gbzjg'})
 
-    Args:
-        query (str): The search query.
-        max_results (int): Maximum number of results to fetch.
+def scrape_google_results(query, page):
+    url = f"https://www.google.com/search?q={query}&start={page * 10}"
+    options = {'scraper': 'google-serp'}
+    response = crawling_api.get(url, options)
 
-    Returns:
-        list: A list of dictionaries containing titles and links of the patents.
-    """
-    base_url = "https://patents.google.com/"
-    search_url = f"{base_url}?q={query.replace(' ', '+')}"
+    if response['headers']['pc_status'] == '200':
+        response_data = json.loads(response['body'].decode('latin1'))
+        return response_data.get('body', {})
+    else:
+        print("Failed to fetch data.")
+        return {}
 
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
-    }
+def scrape_all_pages(query, max_pages):
+    all_results = []
+    for page in range(max_pages):
+        print(f"Scraping page {page + 1}...")
+        page_results = scrape_google_results(query, page)
+        if not page_results:  # Stop if no more results are found
+            print("No more results, stopping.")
+            break
+        all_results.append(page_results)
+    return all_results
 
-    response = requests.get(search_url, headers=headers)
-    if response.status_code != 200:
-        print(f"Failed to fetch data. Status code: {response.status_code}")
-        return []
-
-    soup = BeautifulSoup(response.text, 'html.parser')
-    results = []
-
-    # Extracting patent titles and links
-    patents = soup.select(".result-title")
-    for patent in patents[:max_results]:
-        title = patent.text.strip()
-        link = base_url + patent["href"].strip()
-        results.append({"Title": title, "Link": link})
-
-    return results
-
-def save_to_csv(data, filename="patent_results.csv"):
-    """
-    Saves the patent data to a CSV file.
-
-    Args:
-        data (list): List of dictionaries containing patent titles and links.
-        filename (str): The name of the output CSV file.
-    """
-    df = pd.DataFrame(data)
-    df.to_csv(filename, index=False)
+def save_to_json(data, filename):
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
     print(f"Data saved to {filename}")
 
+# Example usage
 if __name__ == "__main__":
-    query = input("Enter your patent search query: ")
-    max_results = int(input("Enter the number of results to fetch: "))
-
-    print("Searching Google Patents...")
-    results = search_google_patents(query, max_results)
-
-    if results:
-        for i, result in enumerate(results, 1):
-            print(f"{i}. {result['Title']}")
-            print(f"   Link: {result['Link']}")
-
-        save_to_csv(results)
-    else:
-        print("No results found or an error occurred.")
+    print("Enter your search query:")
+    query = input()
+    max_pages = 2
+    results = scrape_all_pages(query, max_pages)
+    save_to_json(results, "./web-scrapper/google_search_results.json")
