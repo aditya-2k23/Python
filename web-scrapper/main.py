@@ -1,7 +1,15 @@
 from crawlbase import CrawlingAPI
 import json
+from dotenv import load_dotenv
+import os
 
-crawling_api = CrawlingAPI({'token': '69Th5CldxjXoJUpS0Gbzjg'})
+# Load environment variables from .env file
+load_dotenv()
+
+# Access variables
+CRAWLBASE_API_KEY = os.getenv("CRAWLBASE_API_KEY")
+
+crawling_api = CrawlingAPI({'token': CRAWLBASE_API_KEY})
 
 def scrape_google_results(query, page):
     url = f"https://www.google.com/search?q={query}&start={page * 10}"
