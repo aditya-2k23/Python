@@ -13,12 +13,17 @@ Write Python code to achieve these tasks and explain the significance of each fu
 
 import numpy as np
 
-transaction_data = np.array([
-    [100.0, 200.0, 300.0, 400.0, 500.0],
-    [150.0, 250.0, 350.0, 450.0, 550.0],
-    [200.0, 300.0, 400.0, 500.0, 600.0],
-    [250.0, 350.0, 450.0, 550.0, 650.0]
-])
+# Function to take user input for transaction data
+def get_transaction_data():
+    rows = int(input("Enter the number of customers: "))
+    cols = int(input("Enter the number of months: "))
+    data = []
+    for i in range(rows):
+        row = list(map(float, input(f"Enter transaction amounts for customer {i+1} (space-separated): ").split()))
+        data.append(row)
+    return np.array(data)
+
+transaction_data = get_transaction_data()
 
 max_transaction = np.max(transaction_data)
 min_transaction = np.min(transaction_data)
@@ -37,6 +42,6 @@ sorted_transactions = np.sort(flattened_data)
 print("Sorted transactions in ascending order:")
 print(sorted_transactions)
 
-reshaped_data = transaction_data.reshape(5, 4)
+reshaped_data = transaction_data.reshape(-1, transaction_data.shape[0])
 print("Reshaped transaction data:")
 print(reshaped_data)
