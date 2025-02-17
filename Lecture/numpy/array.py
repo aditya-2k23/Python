@@ -1,18 +1,31 @@
 import numpy as np
 
-a = np.array([1, 3, 4, 5])
+# Taking input for the first array
+a = np.array(list(map(int, input("Enter the elements of the first array separated by space: ").split())))
 print(a * 2)
 
-a = np.array(([1, 2, 3], [4, 5, 6], [7, 8, 9]))
-b = np.array(([1, 2, 3], [4, 5, 6], [7, 8, 9]))
-d = np.zeros([3, 3], dtype=int)
+# Taking input for the matrices
+rows = int(input("Enter the number of rows for the matrices: "))
+cols = int(input("Enter the number of columns for the matrices: "))
 
-for i in range(0,len(a)):
-    for j in range(0, len(b[0])):
-        for k in range(0, len(b)):
+print("Enter the elements of the first matrix row-wise:")
+a = np.array([list(map(int, input().split())) for _ in range(rows)])
+
+print("Enter the elements of the second matrix row-wise:")
+b = np.array([list(map(int, input().split())) for _ in range(rows)])
+
+d = np.zeros([rows, cols], dtype=int)
+
+for i in range(rows):
+    for j in range(cols):
+        for k in range(cols):
             d[i][j] += a[i][k] * b[k][j]
 
+print("Matrix A:")
 print(a)
+print("Matrix B:")
 print(b)
+print("Matrix D (Result of A * B):")
 print(d)
-print(a@b)
+print("Matrix A @ B (Using @ operator):")
+print(a @ b)
