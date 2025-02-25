@@ -8,3 +8,26 @@ df["Tip_Percentage"] = df["Tip_Percentage"].replace('nan%', '0%')
 
 
 print(df.iloc[10:21])
+
+df_filled = df.fillna(0)
+print(df_filled.head())
+
+grouped_data = df.groupby('Day')['Total_Bill'].sum()
+print(grouped_data)
+
+sorted_df = df.sort_values(by='Total_Bill', ascending=False)
+print(sorted_df.head())
+
+df['Total_Bill'] = df['Total_Bill'].apply(lambda x: x / 100)
+print(df['Total_Bill'])
+
+pivot_table = df.pivot_table(values="Total_Bill", index="Day", columns="Size", aggfunc='sum')
+print(pivot_table)
+
+filtered_df = df.loc[df['Total_Bill'] > 20]
+print(filtered_df.head())
+
+print("First 5 rows using iloc:\n", df.iloc[0:5])
+
+renamed = df.rename(columns={"Total_Bill": "Total Bill Amount"})
+print(renamed.columns)
