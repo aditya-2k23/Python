@@ -20,6 +20,18 @@ df_dropped_rows = df.dropna()
 print("\nDataframe after dropping rows with missing values:")
 print(df_dropped_rows)
 
-df_dropped_columns = df.dropna(axis=1)
+df_dropped_cols = df.dropna(axis=1)
 print("\nDataframe after dropping columns with missing values:")
-print(df_dropped_columns)
+print(df_dropped_cols)
+
+df_filled = df.fillna({"Age": df["Age"].mean(), "City": "Unknown", "Salary": df["Salary"].median()})
+print("\nDataframe after filling missing values:")
+print(df_filled)
+
+df_filled = df.ffill()
+print("\n After forward fill:")
+print(df_filled)
+
+df_bfill = df.bfill()
+print("\n After backward fill:")
+print(df_bfill)
