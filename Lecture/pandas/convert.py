@@ -25,9 +25,9 @@ pivot_table = df.pivot_table(values="Total_Bill", index="Day", columns="Size", a
 print(pivot_table)
 
 filtered_df = df.loc[df['Total_Bill'] > 20]
-print(filtered_df.head())
+print(filtered_df.head()) # loc is used to access a group of rows and columns by labels or a boolean array.
 
-print("First 5 rows using iloc:\n", df.iloc[0:5])
+print("First 5 rows using iloc:\n", df.iloc[0:5]) # iloc is used to get rows (or columns) at particular positions in the index (so it only takes integers).
 
 renamed = df.rename(columns={"Total_Bill": "Total Bill Amount"})
 print(renamed.columns)
