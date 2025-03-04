@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 
+colors = mcolors.CSS4_COLORS
+print(list(colors.keys()))
 # x = [1, 2, 3, 4, 5]
 # y = [10, 20, 25, 30, 40]
 
@@ -30,7 +33,7 @@ import matplotlib.pyplot as plt
 categories = ["AB", 'B', 'C', 'D']
 values = [10, 20, 15, 25]
 
-plt.bar(categories, values, color='cyan')
+plt.bar(categories, values, color='yellow')
 
 plt.xlabel('Categories')
 plt.ylabel('Values')
