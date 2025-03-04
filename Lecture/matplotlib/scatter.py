@@ -10,5 +10,5 @@ plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
 plt.title('Scatter Plot Diagram')
 
-plt.legend() # Legend is used to identify the plot lines
+plt.legend() # Legend is used to show the labels of the plot
 plt.show()
