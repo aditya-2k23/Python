@@ -1,24 +1,21 @@
+import seaborn as sb
 import matplotlib.pyplot as plt
 
 categories = ["Furniture", "Office Supplies", "Technology"]
 profit = [14390.45, 3450.50, 12340.80]
 sales = [80000, 23000, 90000]
 
+sb.set(style="whitegrid")
+
 plt.figure(figsize=(8, 5))
-plt.plot(categories, sales, marker='o')
+sb.lineplot(x=categories, y=sales)
 plt.title("Sales Trend over Categories")
-plt.xlabel("Categories")
-plt.ylabel("Sales")
-plt.grid(True)
 plt.show()
 
 plt.figure(figsize=(8, 5))
-bars = plt.bar(categories, profit)
+barplot = sb.barplot(x=categories, y=profit, errorbar=None)
 plt.title("Average Profit by Category")
-plt.xlabel("Categories")
-plt.ylabel("Profit")
 
-for bar, value in zip(bars, profit):
-    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 100, f'{value:.2f}', ha='center')
-
+for i, value in enumerate(profit):
+    barplot.text(i, value + 100, f'{value:.2f}', ha='center')
 plt.show()
