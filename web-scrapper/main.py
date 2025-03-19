@@ -45,4 +45,4 @@ if __name__ == "__main__":
     query = input()
     max_pages = 2
     results = scrape_all_pages(query, max_pages)
-    save_to_json(results, "./web-scrapper/google_search_results.json")
+    save_to_json(results, "./google_search_results.json")
