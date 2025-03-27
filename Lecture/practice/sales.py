@@ -53,7 +53,22 @@ df = pd.DataFrame({
 
 # Histogram
 plt.hist(x=df, bins=15)
-plt.title("Histogram")
+plt.title("Sales Amount vs Sales Cost")
 plt.xlabel("Sales Cost")
 plt.ylabel("Sales Amount")
+plt.show()
+
+# Heatmap
+df = pd.DataFrame({
+    "Sales Cost": data["Sales_Cost"],
+    "Sales Amount": data["Sales_Amt"],
+    "Sales Quantity": data["Sales_Qty"]
+})
+sb.heatmap(data=df.corr(), annot=True, cmap="coolwarm")
+plt.title("Correlation Heatmap")
+plt.show()
+
+# Barplot
+sb.barplot(data=data, x="Sales_Qty", y="Sales_Amt")
+plt.title("Sales Amount vs Sales Quantity")
 plt.show()
