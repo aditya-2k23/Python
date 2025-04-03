@@ -8,3 +8,5 @@ __pycache__
 
 *.cpp
 .vscode/settings.json
+
+*.ipynb
