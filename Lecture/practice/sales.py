@@ -3,7 +3,7 @@ import seaborn as sb
 import matplotlib.pyplot as plt
 import pandas as pd
 
-data = pd.read_excel("sales.xlsx")
+data = pd.read_excel("./sales.xlsx")
 
 print(Fore.RED + "Shape of data:", Fore.RESET, end=" ")
 print(data.shape, "\n")
