@@ -25,13 +25,13 @@ print(data.isnull().sum(), "\n")
 
 # Sales date & Sales quantity Correlation
 df = pd.DataFrame({
-    "Sales_date": data["SalesDate"],
+    "Sales Cost": data["Sales_Cost"],
     "Sales_quantity": data["Sales_Qty"]
 })
 
-print(Fore.LIGHTRED_EX + "Sales Date & Sales Quantity Correlation:" + Fore.RESET, end=" ")
+print(Fore.LIGHTRED_EX + "Sales Cost & Sales Quantity Correlation:" + Fore.RESET, end=" ")
 print(f"{df.corr().iloc[0, 1]:.2f}")
-print(Fore.LIGHTYELLOW_EX + "Sales Date & Sales Quantity Covariance:" + Fore.RESET, end=" ")
+print(Fore.LIGHTYELLOW_EX + "Sales Cost & Sales Quantity Covariance:" + Fore.RESET, end=" ")
 print(f"{df.cov().iloc[0, 1]:.2f}")
 
 df = pd.DataFrame({
@@ -44,6 +44,28 @@ print(Fore.LIGHTRED_EX + "Sales Cost & Sales Amount Correlation:" + Fore.RESET, 
 print(f"{df.corr().iloc[0, 1]:.2f}")
 print(Fore.LIGHTYELLOW_EX + "Sales Cost & Sales Amount Covariance:" + Fore.RESET, end=" ")
 print(f"{df.cov().iloc[0, 1]:.2f}")
+
+df = pd.DataFrame({
+    "Sales Amount": data["Sales_Amt"],
+    "Sales Quantity": data["Sales_Qty"]
+})
+
+# Sales Amount & Sales Quantity
+print(Fore.LIGHTRED_EX + "Sales Amount & Sales Quantity Correlation:" + Fore.RESET, end=" ")
+print(f"{df.corr().iloc[0, 1]:.2f}")
+print(Fore.LIGHTYELLOW_EX + "Sales Amount & Sales Quantity Covariance:" + Fore.RESET, end=" ")
+print(f"{df.cov().iloc[0, 1]:.2f}")
+
+print(Fore.LIGHTGREEN_EX + "Highest correlation is between Sales Amount & Sales Quantity: " + Fore.RESET, end=" ")
+print(f"{df.corr().iloc[0, 1]:.2f}")
+
+df = pd.DataFrame({
+    "Sales Cost": data["Sales_Cost"],
+    "Sales Quantity": data["Sales_Qty"]
+})
+
+print(Fore.LIGHTBLUE_EX + "Lowest correlation is between Sales Cost & Sales Quantity: " + Fore.RESET, end=" ")
+print(f"{df.corr().iloc[0, 1]:.2f}")
 
 
 df = pd.DataFrame({
