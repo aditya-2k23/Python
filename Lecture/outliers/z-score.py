@@ -11,3 +11,6 @@ print(f"Mean: {mean:.2f}, Standard Deviation: {std_dev:.2f}")
 z_scores = (data - mean) / std_dev
 for i, j in zip(data, z_scores):
     print(f"Z_{i} = {j:.2f}")
+
+# Mild Outliers ranges from |Z| < -2 and |Z| > 2
+# Strict Outliers ranges from |Z| < -3 and |Z| > 3
