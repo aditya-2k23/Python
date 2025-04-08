@@ -1,3 +1,3 @@
 import pywhatkit as pyw
 
-pyw.sendwhatmsg('+919914212367', 'Mota kevin', 22, 28)
+pyw.sendwhatmsg('+916284852291', 'Saskiii moti haii!', 23, 37)
