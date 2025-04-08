@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 data = np.array([10, 12, 14, 15, 18, 21, 22, 25, 28, 2, -10])
 
@@ -12,4 +13,10 @@ upper = q3 + 1.5 * iqr
 print("Lower Bound:", lower, "Upper Bound:", upper)
 
 outliers_iqr = data[(data < lower) | (data > upper)]
-print(outliers_iqr)
+print("Outlier:", outliers_iqr)
+
+plt.figure(figsize=(6, 4))
+plt.boxplot(data, vert=False)
+plt.xlabel("Values")
+plt.title('Box Plot for Outlier Detection')
+plt.show()
