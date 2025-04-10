@@ -12,5 +12,8 @@ z_scores = (data - mean) / std_dev
 for i, j in zip(data, z_scores):
     print(f"Z_{i} = {j:.2f}")
 
+outliers_z = data[np.abs(z_scores) > 1]
+print(f"Outliers: {outliers_z}")
+
 # Mild Outliers ranges from |Z| < -2 and |Z| > 2
 # Strict Outliers ranges from |Z| < -3 and |Z| > 3
