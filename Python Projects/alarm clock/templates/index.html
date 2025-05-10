@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alarm Clock</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 
 <body>
@@ -36,159 +37,8 @@
             <div>Time remaining:</div>
             <div id="countdown" class="countdown">00:00</div>
         </div>
-
         <div id="status" class="status"></div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const currentTimeElement = document.getElementById('currentTime');
-            const timeInput = document.getElementById('timeInput');
-            const setButton = document.getElementById('setButton');
-            const stopButton = document.getElementById('stopButton');
-            const statusElement = document.getElementById('status');
-            const countdownContainer = document.getElementById('countdownContainer');
-            const countdownElement = document.getElementById('countdown');
-
-            let countdownInterval = null;
-            let alarmEndTime = null;
-
-            // Update clock every second
-            function updateClock() {
-                const now = new Date();
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                currentTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
-            }
-
-            setInterval(updateClock, 1000);
-            updateClock();
-
-            // Check alarm status every 2 seconds
-            function checkAlarmStatus() {
-                fetch('/alarm_status')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.running) {
-                            setButton.disabled = true;
-                            stopButton.disabled = false;
-                        } else {
-                            setButton.disabled = false;
-                            stopButton.disabled = true;
-
-                            // Hide countdown if alarm is not running
-                            if (!alarmEndTime) {
-                                countdownContainer.classList.add('hidden');
-                            }
-                        }
-                    })
-                    .catch(error => console.error('Error checking alarm status:', error));
-            }
-
-            setInterval(checkAlarmStatus, 2000);
-            checkAlarmStatus();
-
-            // Update countdown timer
-            function updateCountdown() {
-                if (!alarmEndTime) return;
-
-                const now = new Date().getTime();
-                const timeLeft = alarmEndTime - now;
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    countdownElement.textContent = "00:00";
-                    return;
-                }
-
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                countdownElement.textContent =
-                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }
-
-            // Set Alarm
-            setButton.addEventListener('click', function () {
-                const value = timeInput.value;
-                if (!value || value <= 0) {
-                    showStatus('Please enter a valid positive number', 'error');
-                    return;
-                }
-
-                const mode = document.querySelector('input[name="mode"]:checked').value;
-
-                fetch('/set_alarm', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ mode, value })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            showStatus(data.message, 'success');
-
-                            // Set countdown timer
-                            const seconds = mode === 'm' ? parseInt(value) * 60 : parseInt(value);
-                            alarmEndTime = new Date().getTime() + (seconds * 1000);
-
-                            countdownContainer.classList.remove('hidden');
-
-                            if (countdownInterval) {
-                                clearInterval(countdownInterval);
-                            }
-
-                            updateCountdown();
-                            countdownInterval = setInterval(updateCountdown, 1000);
-                        } else {
-                            showStatus(data.message, 'error');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error setting alarm:', error);
-                        showStatus('An error occurred while setting the alarm', 'error');
-                    });
-            });
-
-            // Stop Alarm
-            stopButton.addEventListener('click', function () {
-                fetch('/stop_alarm', {
-                    method: 'POST'
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        showStatus(data.message, data.status === 'success' ? 'success' : 'error');
-
-                        if (data.status === 'success') {
-                            // Clear countdown timer
-                            if (countdownInterval) {
-                                clearInterval(countdownInterval);
-                                countdownInterval = null;
-                            }
-                            alarmEndTime = null;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error stopping alarm:', error);
-                        showStatus('An error occurred while stopping the alarm', 'error');
-                    });
-            });
-
-            function showStatus(message, type) {
-                statusElement.textContent = message;
-                statusElement.className = 'status ' + type;
-
-                // Clear the status message after 5 seconds
-                setTimeout(() => {
-                    statusElement.textContent = '';
-                    statusElement.className = 'status';
-                }, 5000);
-            }
-        });
-    </script>
 </body>
 
 </html>
