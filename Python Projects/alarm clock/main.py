@@ -1,6 +1,14 @@
-from pygame import mixer
 import time
 import msvcrt  # For Windows keyboard input
+import os
+import sys
+
+# Suppress Pygame's greeting message
+sys.stdout = open(os.devnull, 'w')  # Redirect stdout before importing pygame
+
+from pygame import mixer
+
+sys.stdout = sys.__stdout__  # Restore stdout
 
 def check_for_keypress():
     while True:
