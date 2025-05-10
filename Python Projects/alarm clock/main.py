@@ -1,5 +1,14 @@
 from pygame import mixer
 import time
+import threading
+import sys
+import msvcrt  # For Windows keyboard input
+
+def check_for_keypress():
+    while True:
+        if msvcrt.kbhit():  # Check if a key has been pressed
+            return True
+        time.sleep(0.1)
 
 def alarm(seconds):
     time_elapsed = 0
@@ -13,26 +22,39 @@ def alarm(seconds):
         seconds_left = time_left % 60
 
         print(f"Alarm will go off in {minutes_left:02d}:{seconds_left:02d}", end="\r")
-    print("Time's up! Alarm ringing...")
+    print("Time's up! Alarm ringing... (Press any key to stop)")
 
     mixer.init()
     try:
         mixer.music.load("alarm.mp3")
-        mixer.music.play()
+        mixer.music.play(-1)  # Play in a loop until stopped
 
         # Start with low volume and gradually increase
         volume = 0.1
         mixer.music.set_volume(volume)
 
-        # Increase volume in a separate thread to not block the main thread
-        start_time = time.time()
+        # Start a thread to check for key press
+        keypress_thread = threading.Thread(target=check_for_keypress)
+        keypress_thread.daemon = True
+        keypress_thread.start()
+
+        # Increase volume until max or user stops it
         while mixer.music.get_busy() and volume < 1.0:
+            if msvcrt.kbhit():
+                msvcrt.getch()  # Clear the key buffer
+                break
             volume = min(volume + 0.01, 1.0)  # Increase volume gradually
             mixer.music.set_volume(volume)
             time.sleep(0.1)  # Adjust speed of volume increase
 
+        # Wait for key press or until music ends
         while mixer.music.get_busy():
-            time.sleep(1)
+            if msvcrt.kbhit():
+                msvcrt.getch()  # Clear the key buffer
+                mixer.music.stop()
+                print("Alarm stopped.")
+                break
+            time.sleep(0.1)
     except FileNotFoundError:
         print("Error: alarm.mp3 file not found. Please make sure the file exists.")
     except Exception as e:
