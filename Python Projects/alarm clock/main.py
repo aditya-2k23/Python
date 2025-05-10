@@ -1,7 +1,5 @@
 from pygame import mixer
 import time
-import threading
-import sys
 import msvcrt  # For Windows keyboard input
 
 def check_for_keypress():
@@ -33,12 +31,10 @@ def alarm(seconds):
         volume = 0.1
         mixer.music.set_volume(volume)
 
-        # Start a thread to check for key press
-        keypress_thread = threading.Thread(target=check_for_keypress)
-        keypress_thread.daemon = True
-        keypress_thread.start()
+        # Calculate the end time (5 minutes from now)
+        alarm_end_time = time.time() + 300  # 5 minutes = 300 seconds
 
-        # Increase volume until max or user stops it
+        # Increase volume until max
         while mixer.music.get_busy() and volume < 1.0:
             if msvcrt.kbhit():
                 msvcrt.getch()  # Clear the key buffer
@@ -47,14 +43,17 @@ def alarm(seconds):
             mixer.music.set_volume(volume)
             time.sleep(0.1)  # Adjust speed of volume increase
 
-        # Wait for key press or until music ends
-        while mixer.music.get_busy():
+        # Keep alarm running for at least 5 minutes or until key press
+        while mixer.music.get_busy() and time.time() < alarm_end_time:
             if msvcrt.kbhit():
                 msvcrt.getch()  # Clear the key buffer
-                mixer.music.stop()
-                print("Alarm stopped.")
                 break
             time.sleep(0.1)
+
+        # Stop the music if it's still playing
+        if mixer.music.get_busy():
+            mixer.music.stop()
+            print("Alarm stopped.")
     except FileNotFoundError:
         print("Error: alarm.mp3 file not found. Please make sure the file exists.")
     except Exception as e:
