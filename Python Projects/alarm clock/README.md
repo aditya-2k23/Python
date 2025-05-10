@@ -44,6 +44,7 @@ This is a web-based version of the command-line alarm clock application. The app
 - `app.py` - Flask web application that adapts the alarm clock for web use
 - `templates/index.html` - Web interface for the alarm clock
 - `static/css/styles.css` - CSS styles for the web interface
+- `static/js/script.js` - JavaScript functionality for the web interface
 - `alarm.mp3` - Sound file played when the alarm goes off
 
 ## Notes
