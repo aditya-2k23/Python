@@ -12,7 +12,7 @@
     --input-border: #ddd;
     --success-color: #27ae60;
     --error-color: #e74c3c;
-    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Dark theme variables */
@@ -20,7 +20,7 @@
     --bg-color: #121212;
     --container-bg: #1e1e1e;
     --text-color: #e0e0e0;
-    --heading-color: #61dafb;
+    --heading-color: #e0e0e0;
     --button-primary: #2563eb;
     --button-primary-hover: #1d4ed8;
     --button-danger: #dc2626;
@@ -90,6 +90,15 @@ h1 {
 input[type="radio"] {
     margin-right: 8px;
     accent-color: var(--button-primary);
+    border: 2px solid var(--input-border);
+    background-color: var(--container-bg);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="radio"]:checked {
+    transform: scale(1.5);
 }
 
 input[type="number"] {
@@ -103,6 +112,19 @@ input[type="number"] {
     background-color: var(--container-bg);
     color: var(--text-color);
     transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: var(--button-primary);
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 button {
