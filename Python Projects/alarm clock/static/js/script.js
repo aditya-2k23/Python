@@ -16,11 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const statusElement = document.getElementById("status"); // Element to show status messages
   const countdownContainer = document.getElementById("countdownContainer"); // Container for countdown display
   const countdownElement = document.getElementById("countdown"); // Element that shows the countdown time
+  const themeToggle = document.getElementById("themeToggle"); // Theme toggle button
+  const themeToggleIcon = themeToggle.querySelector(".theme-toggle-icon"); // Theme toggle icon
+  const themeToggleText = themeToggle.querySelector(".theme-toggle-text"); // Theme toggle text
 
   // =============== STATE VARIABLES ===============
   // Variables to keep track of the alarm state
   let countdownInterval = null; // Stores the interval ID for the countdown timer
   let alarmEndTime = null; // Stores when the alarm should go off
+  let isDarkMode = true; // Default to dark mode
 
   // =============== CLOCK FUNCTIONS ===============
   /**
@@ -192,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
         showStatus("An error occurred while stopping the alarm", "error");
       });
   });
-
   // =============== UTILITY FUNCTIONS ===============
   /**
    * Display a status message to the user
@@ -209,5 +212,37 @@ document.addEventListener("DOMContentLoaded", function () {
       statusElement.textContent = "";
       statusElement.className = "status";
     }, 5000);
+  }
+
+  // =============== THEME FUNCTIONS ===============
+  /**
+   * Toggle between light and dark mode
+   */
+  function toggleTheme() {
+    isDarkMode = !isDarkMode;
+
+    if (isDarkMode) {
+      // Switch to dark mode
+      document.documentElement.classList.add("dark-mode");
+      themeToggleIcon.textContent = "☀️";
+      themeToggleText.textContent = "Light Mode";
+    } else {
+      // Switch to light mode
+      document.documentElement.classList.remove("dark-mode");
+      themeToggleIcon.textContent = "🌙";
+      themeToggleText.textContent = "Dark Mode";
+    }
+
+    // Save user preference to local storage
+    localStorage.setItem("darkMode", isDarkMode);
+  }
+
+  // Add click event listener to theme toggle button
+  themeToggle.addEventListener("click", toggleTheme);
+
+  // Initialize theme based on saved preference or default to dark mode
+  if (localStorage.getItem("darkMode") === "false") {
+    isDarkMode = true; // Set to true so that toggleTheme will switch to light mode
+    toggleTheme();
   }
 });
