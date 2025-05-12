@@ -4,15 +4,21 @@ import queue
 import time
 
 maze = [
-    ["#", "O", "#", "#", "#", "#", "#", "#", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", "#", "#", " ", "#", "#", " ", "#"],
-    ["#", " ", "#", " ", " ", " ", "#", " ", "#"],
-    ["#", " ", "#", " ", "#", " ", "#", " ", "#"],
-    ["#", " ", "#", " ", "#", " ", "#", " ", "#"],
-    ["#", " ", "#", " ", "#", " ", "#", "#", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", "#", "#", "#", "#", "#", "#", "X", "#"]
+    ["#", "O", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
+    ["#", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", "#"],
+    ["#", "#", "#", "#", "#", " ", " ", "#", " ", "#", "#", "#", "#", " ", "#"],
+    ["#", " ", " ", " ", "#", " ", "#", "#", " ", "#", " ", " ", " ", " ", "#"],
+    ["#", " ", "#", " ", " ", " ", " ", " ", " ", "#", " ", "#", "#", "#", "#"],
+    ["#", " ", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#"],
+    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", "#", " ", "#"],
+    ["#", "#", "#", "#", "#", "#", " ", "#", "#", "#", "#", "#", " ", " ", "#"],
+    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", "#"],
+    ["#", " ", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
+    ["#", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
+    ["#", "#", "#", " ", "#", " ", "#", "#", "#", "#", "#", "#", "#", " ", "#"],
+    ["#", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#", " ", "#"],
+    ["#", " ", "#", " ", "#", "#", "#", "#", " ", "#", "#", " ", " ", " ", "#"],
+    ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "X", "#"]
 ]
 
 def find_start(maze, start):
@@ -38,7 +44,7 @@ def find_path(maze, stdscr):
 
         stdscr.clear()
         print_maze(maze, stdscr, path)
-        time.sleep(0.3)
+        time.sleep(0.2)
         stdscr.refresh()
 
         if maze[row][col] == end:
@@ -59,6 +65,8 @@ def find_path(maze, stdscr):
 
         visited.add(current_pos)
 
+    return None  # Return None if no path is found
+
 def find_neighbors(maze, row, col):
     neighbors = []
 
@@ -75,19 +83,30 @@ def find_neighbors(maze, row, col):
 def print_maze(maze, stdscr, path=[]):
     BLUE = curses.color_pair(1)
     RED = curses.color_pair(2)
+    GREEN = curses.color_pair(3)
 
     for i, row in enumerate(maze):
         for j, value in enumerate(row):
             if (i, j) in path:
-                stdscr.addstr(i, j*2, "X", RED)
+                stdscr.addstr(i, j*2, "-", RED)
             else:
-                stdscr.addstr(i, j*2, value, BLUE)
+                if value == "X":
+                    stdscr.addstr(i, j*2, value, GREEN)
+                else:
+                    stdscr.addstr(i, j*2, value, BLUE)
 
 def main(stdscr):
     curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK)
 
-    find_path(maze, stdscr)
+    if not find_path(maze, stdscr):
+        stdscr.addstr(len(maze) + 1, 0, "No path found! (Press any key to exit)", curses.A_BOLD)
+        stdscr.refresh()
+        stdscr.getch()
+        return None
+    stdscr.addstr(len(maze) + 1, 0, "Path found! (Press any key to exit)", curses.A_BOLD)
+    stdscr.refresh()
     stdscr.getch()
 
 wrapper(main)
