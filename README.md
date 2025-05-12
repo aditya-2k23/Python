@@ -8,14 +8,37 @@ All the python projects that I have made and will make will be stored here in th
 
 This directory contains Python scripts used for learning and practicing various concepts:
 
-- `conditionals.py`: Demonstrates the use of conditional statements like `if`, `elif`, `else`, and `match-case`.
-- `datatype.py`: Shows different data types in Python and their usage.
-- `functions.py`: Contains basic function definitions and examples, including recursive functions and generator functions.
-- `practice.py`: Includes a FizzBuzz implementation and commented-out code for calculating average grades.
-- `table.py`: Generates a multiplication table for a given number with colored output using `colorama`.
-- `test.py`: Contains a test script for `practice.py` using `subprocess`.
+- `basics/`: Contains foundational Python scripts for beginners.
+  - `hello_world.py`: A simple script that prints "Hello, World!".
+  - `variables.py`: Demonstrates variable declarations and basic data types.
+  - `loops.py`: Examples of `for` and `while` loops.
+  - `functions.py`: Basic examples of function definitions and calls.
+  - `conditionals.py`: Demonstrates `if`, `elif`, and `else` statements.
+- `data_structures/`: Scripts showcasing Python data structures.
+  - `lists.py`: Examples of list operations.
+  - `dictionaries.py`: Demonstrates dictionary usage.
+  - `sets.py`: Examples of set operations.
+  - `tuples.py`: Demonstrates tuple usage.
+- `algorithms/`: Contains scripts for basic algorithms.
+  - `sorting.py`: Implements bubble sort and quicksort.
+  - `searching.py`: Demonstrates linear and binary search.
+  - `recursion.py`: Examples of recursive functions.
+- `file_handling/`: Scripts for working with files.
+  - `read_file.py`: Reads content from a file.
+  - `write_file.py`: Writes content to a file.
+  - `file_operations.py`: Demonstrates file operations like renaming and deleting.
+- `error_handling/`: Examples of exception handling in Python.
+  - `try_except.py`: Demonstrates `try`, `except`, and `finally` blocks.
+  - `custom_exceptions.py`: Shows how to create and use custom exceptions.
+- `modules/`: Scripts demonstrating Python modules.
+  - `math_module.py`: Examples of using the `math` module.
+  - `datetime_module.py`: Demonstrates date and time operations.
+  - `os_module.py`: Examples of using the `os` module.
+- `testing/`: Scripts for testing Python code.
+  - `unittest_example.py`: Demonstrates unit testing using the `unittest` module.
+  - `pytest_example.py`: Examples of using `pytest` for testing.
 
-### misc
+### Misc
 
 This directory contains miscellaneous Python scripts:
 
